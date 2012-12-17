@@ -13,7 +13,7 @@
       <h2>A member of the Silver Star Alliance</h2>
     </hgroup>
 	 <nav>
-       <ul>
+    <ul>
         <li><%= link_to "Central Command", root_url%></li>
         <li><%= link_to "About Us", about_path%></li>
         <li><%= link_to "Contact", contact_path%></li>
@@ -31,27 +31,44 @@
 	<h4><%= image_tag("2.jpg", :height => 52, :width=>64) %> </h4>
 	</header>
 	<div id="content-area">
-		 <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
-		  <% end %>
-	<%= form_for(:session, :url => sessions_path) do |f| %>
-				<div class = "input_field">
+
+			<%= form_for(@user) do |f| %>
+			<%= render 'error_messages' %>
+			<div class = "input_field">
 				<%= f.label :username %>
 				</br>
 				<%= f.text_field :username %>
-				</div>
-				<div class = "input_field">
+			</div>
+			<div class = "input_field">
+				<%= f.label :first_name %>
+				</br>
+				<%= f.text_field :first_name %>
+			</div>
+			<div class = "input_field">
+				<%= f.label :last_name %>
+				</br>
+				<%= f.text_field :last_name %>
+			</div>
+			<div class = "input_field">
+				<%= f.label :email %>
+				</br>
+				<%= f.text_field :email %>
+			</div>
+			<div class = "input_field">
 				<%= f.label :password %>
 				</br>
 				<%= f.password_field :password %>
-				</div>
-				<div class = "actions">
-				<%= f.submit "Log In!" %>
-				</div>
+			</div>
+			<div class = "input_field">
+				<%= f.label :password_confirmation %>
+				</br>
+				<%= f.password_field :password_confirmation %>
+			</div>
+			<div class = "actions">
+				<%= f.submit "Update User Profile!" %>
 			<% end %>
-	<p>No Account? <%= link_to "Sign Up For One Here!", signup_path %>
-			
-</div>
+	</div>
+
 </body>
 <footer id="footer">
     &copy; Copyright Joshua Hunter,2012
@@ -60,4 +77,3 @@
 	<div>&copy; Copyright Vector Industries</div>
   </footer>
 </html>
-
