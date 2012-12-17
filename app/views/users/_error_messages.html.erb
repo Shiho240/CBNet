@@ -1,0 +1,11 @@
+<% if @user.errors.any? %>
+			<div id="error">
+			<%= pluralize(@user.errors.count, "error") %> prevented this user from being created:
+			<p>The following problems were detected while creating a new user:</p>
+			<ul>
+			<%= @user.errors.full_messages.each do |message| %>
+			<li><%= message %> </li>
+			<% end %>
+			</ul>
+			</div>
+			<% end %>
