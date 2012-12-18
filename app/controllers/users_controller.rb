@@ -10,6 +10,7 @@ def new
 def show
 	@user = User.find(params[:id])
 	@title = @user.username
+	@games = @user.games.paginate(:page => params[:page])
 end
 
 def create

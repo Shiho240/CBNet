@@ -13,6 +13,10 @@ module SessionsHelper
 		@current_user ||= user_from_remember_token
 	end
 	
+	def authenticator
+	redirect_to login_path, :notice =>"UNAUTHORIZED ACCESS DETECTED, Please sign in to continue!" unless signed_in?
+	end
+	
 	def signed_in?
 		!current_user.nil?
 	end

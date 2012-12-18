@@ -19,6 +19,7 @@
         <li><%= link_to "Contact", contact_path%></li>
         <li><%= link_to "Help", help_path%></li>
 		<% if signed_in? %>
+		<li><%= link_to "Users", users_path %></li>
 		<li><%= link_to "User Profile", user_path(current_user) %></li>
 		<li><%= link_to "User Configuration", edit_user_path(current_user) %></li>
 		<li><%= link_to "Terminal Logout", logout_path %>
@@ -35,13 +36,27 @@
           <div class="flash <%= key %>"><%= value %></div>
 		  <% end %>
 	<%= gravatar_for @user %> Welcome back <%= @user.username %>
-
+<br/>
 Your profile details:
-<%= @user.username%>
-<%= @user.email%>
-<%= @user.first_name%> <%=@user.last_name %>
+<ul>
+<li><%= @user.username%></li>
+<li><%= @user.email%></li>
+<li><%= @user.first_name%> <%=@user.last_name %></li>
+<li> # Of Games Owned/Reviewed: <%= @user.games.count %></li>
+<% if @user.admin? %><li>ADMINISTAR ONLINE
+	<%= image_tag("administar.png", :height => 150, :width => 150) %></li>
+<% end %>	
 
+	</ul>
 	
+	<br/>
+
+	<% if @user.games.any? %>
+	<p>
+	<%= render @games %>
+	</p>
+        <%= will_paginate @games %>
+      <% end %>
 	</div>
 
 </body>

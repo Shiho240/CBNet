@@ -1,0 +1,11 @@
+<% if @game.errors.any? %>
+			<div id="error">
+			<%= pluralize(@game.errors.count, "error") %> prevented this game from being created:
+			<p>The following problems were detected while creating a new game:</p>
+			<ul>
+			<%= @game.errors.full_messages.each do |message| %>
+			<li><%= message %> </li>
+			<% end %>
+			</ul>
+			</div>
+<% end %>

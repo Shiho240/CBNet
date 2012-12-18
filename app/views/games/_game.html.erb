@@ -1,0 +1,10 @@
+<ul>
+<li>Game Name: <%= game.gamename %></li>
+		<li>Game Genre: <%= game.genre %></li>
+		<li>Game Rating (X/10): <%= game.rating %></li>
+		<li>Game Description: <%= game.game_desc %></li>
+		<li>Game Review: <%= game.review %></li
+		<li>Posted <%= time_ago_in_words(game.created_at) %> ago.</li>
+		<% if current_user?(game.user) %>
+		<li><%= link_to "delete", game, :method => :delete, :confirm => "Are You sure you want to delete this game ownership/review?", :title => game.gamename %></li><% end %>
+		</ul>

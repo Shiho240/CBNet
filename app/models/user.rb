@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :email, :first_name, :last_name, :username, :password, :password_confirmation
   
+  
+  has_many :games, :dependent => :destroy
+  
   email_expr = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   
@@ -17,7 +20,9 @@ class User < ActiveRecord::Base
 					   
 					   
 before_save :encrypt_password
-
+def feed
+Game.where("user_id = ?", id)
+end
 def has_password?(submitted_password)
 	encrypted_password == encrypt(submitted_password)
 

@@ -13,12 +13,13 @@
       <h2>A member of the Silver Star Alliance</h2>
     </hgroup>
 	 <nav>
-   <ul>
+ <ul>
         <li><%= link_to "Central Command", root_url%></li>
         <li><%= link_to "About Us", about_path%></li>
         <li><%= link_to "Contact", contact_path%></li>
         <li><%= link_to "Help", help_path%></li>
 		<% if signed_in? %>
+		<li><%= link_to "Users", users_path %></li>
 		<li><%= link_to "User Profile", user_path(current_user) %></li>
 		<li><%= link_to "User Configuration", edit_user_path(current_user) %></li>
 		<li><%= link_to "Terminal Logout", logout_path %>
@@ -31,12 +32,26 @@
 	<h4><%= image_tag("2.jpg", :height => 52, :width=>64) %> </h4>
 	</header>
 	<div id="content-area">
+		 <% flash.each do |key, value| %>
+		 <%= image_tag("ioncannon.jpg", :height => 1500, :width => 150) %>
+          <div class="flash <%= key %>"><%= value %></div>
+		  <% end %>
 <h1> Users </h1>
 
 <ul class = "users">
 <% @users.each do |user| %>
-<li><%= gravatar_for user %><%= link_to user.username, user %></li><% if current_user.admin? %><%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
-                              :title => "Delete #{user.username}" %><%= image_tag("administar.png", :height => 100, :width => 100) %>						  
+<li>
+<% if user.admin? %>
+	<%= image_tag("administar.png", :height => 150, :width => 150) %>
+<% end %>	
+<%= gravatar_for user %><%= link_to user.username, user %>
+
+</li>
+<% if current_user.admin? %>
+	<%= image_tag("administar.png", :height => 150, :width => 150) %>		
+  <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+                              :title => "Delete #{user.username}" %>
+				  
 <% end %>
 <% end %>
 </ul>

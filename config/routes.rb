@@ -3,6 +3,7 @@ CBNet::Application.routes.draw do
 
 resources :users
 resources :sessions, :only => [:new, :create, :destroy]
+resources :games, :only => [:create, :destroy]
 
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
