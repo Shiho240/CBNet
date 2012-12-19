@@ -1,0 +1,1 @@
+Following/Followers doesnt work. There is also a bug with partials for the home page feed on heroku that doesnt always happen on this local server. Everything works, but followers/following may have broken stuff, to see this go to covenantbattlenet.herokuapp.com to see last github pull before this was added and everything broke.
